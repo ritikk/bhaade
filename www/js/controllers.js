@@ -10,8 +10,6 @@ angular.module('starter.controllers', [])
   };
   var autocomplete = new google.maps.places.Autocomplete(searchInput, options);
 
-
-
   var marker = new google.maps.Marker({
     map: null,
     anchorPoint: new google.maps.Point(0, -29)
@@ -54,11 +52,16 @@ angular.module('starter.controllers', [])
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open($scope.map, marker);
+
   });
 
   $scope.mapCreated = function(map) {
     $scope.map = map;
     autocomplete.bindTo('bounds', $scope.map);
+    google.maps.event.addListener($scope.map, 'idle', function() {
+      $scope.bounds = $scope.map.getBounds().toUrlValue();
+      //alert($scope.bounds);
+    });
   };
 
   $scope.centerOnMe = function() {
