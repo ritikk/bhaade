@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('ExploreCtrl', function($scope, $ionicLoading) {
+.controller('ExploreCtrl', function($scope, $ionicLoading, placeSvc) {
   var searchInput = document.getElementById('mapSearch');
   var options = {
     types: ['geocode'], //this should work !
@@ -21,10 +21,20 @@ angular.module('starter.controllers', [])
     infowindow.close();
     marker.setVisible(false);
     var place = autocomplete.getPlace();
+    
     if (!place.geometry) {
       return;
     }
+    
+    placeSvc.setPlace(place);
 
+    $scope.markPlace(place);
+
+  });
+  
+  $scope.markPlace = function(place) {
+    infowindow.close();
+    marker.setVisible(false);
     // If the place has a geometry, then present it on a map.
     if (place.geometry.viewport) {
       $scope.map.fitBounds(place.geometry.viewport);
@@ -52,14 +62,30 @@ angular.module('starter.controllers', [])
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br />' + address + '</div>');
     infowindow.open($scope.map, marker);
-
-  });
+  };
 
   $scope.mapCreated = function(map) {
     $scope.map = map;
     autocomplete.bindTo('bounds', $scope.map);
+    $scope.addNavigateButton();
+    if(placeSvc.getPlace()) {
+      $scope.markPlace(placeSvc.getPlace());
+    } else {
+      $scope.centerOnMe();
+    }
   };
-
+  
+  $scope.addNavigateButton = function() {
+    var btn = document.createElement('a');
+    btn.className="button button-icon icon ion-ios7-navigate-outline";
+    btn.title="Get my location";
+    google.maps.event.addDomListener(btn, 'click', function() {
+      $scope.centerOnMe();
+    });
+    btn.index = 1;
+    $scope.map.controls[google.maps.ControlPosition.LEFT_TOP].push(btn);
+  };
+  
   $scope.centerOnMe = function() {
     console.log("Centering");
     if (!$scope.map) {
@@ -75,15 +101,19 @@ angular.module('starter.controllers', [])
       console.log('Got pos', pos);
       var myLatLong = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
       $scope.map.setCenter(myLatLong);
-      /*$scope.marker = new google.maps.Marker({
-                                                                                 position:myLatLong,
-                                                                                 map: $scope.map,
-                                                                                 title: "Your location"
-                                                                                 });*/
-      $scope.accuracy = pos.coords.accuracy;
+      marker = new google.maps.Marker({
+         position:myLatLong,
+         map: $scope.map,
+         title: "Your location"
+       });
+       $scope.map.setZoom(17); // Why 17? Because it looks good.
       $scope.loading.hide();
     }, function(error) {
       alert('Unable to get location: ' + error.message);
     });
   };
-});
+})
+
+.controller('AddListingCtrl', function($scope){})
+
+.controller('AccountCtrl', function($scope){});
