@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('MapCtrl', function($scope, $ionicLoading) {
+.controller('ExploreCtrl', function($scope, $ionicLoading) {
   var searchInput = document.getElementById('mapSearch');
   var options = {
     types: ['geocode'], //this should work !
@@ -50,7 +50,7 @@ angular.module('starter.controllers', [])
       ].join(' ');
     }
 
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br />' + address + '</div>');
     infowindow.open($scope.map, marker);
 
   });
@@ -58,10 +58,6 @@ angular.module('starter.controllers', [])
   $scope.mapCreated = function(map) {
     $scope.map = map;
     autocomplete.bindTo('bounds', $scope.map);
-    google.maps.event.addListener($scope.map, 'idle', function() {
-      $scope.bounds = $scope.map.getBounds().toUrlValue();
-      //alert($scope.bounds);
-    });
   };
 
   $scope.centerOnMe = function() {
