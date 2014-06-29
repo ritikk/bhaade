@@ -33,3 +33,64 @@
 2014-06-22 19:41:11.626 HelloCordova[3589:90b] Resetting plugins due to page load.
 2014-06-22 19:41:12.974 HelloCordova[3589:90b] Finished load of: file:///Users/ritikkhatwani/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/4007F213-75C7-41F6-81B1-98AF86302118/HelloCordova.app/www/index.html
 2014-06-22 19:41:35.486 HelloCordova[3589:90b] Received memory warning.
+2014-06-29 13:58:25.178 HelloCordova[2046:90b] Multi-tasking -> Device: YES, App: YES
+2014-06-29 13:58:25.233 HelloCordova[2046:90b] Unlimited access to network resources
+2014-06-29 13:58:26.331 HelloCordova[2046:90b] [CDVTimer][keyboard] 0.083983ms
+2014-06-29 13:58:26.332 HelloCordova[2046:90b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-06-29 13:58:26.332 HelloCordova[2046:90b] [CDVTimer][statusbar] 0.531971ms
+2014-06-29 13:58:26.333 HelloCordova[2046:90b] [CDVTimer][TotalPluginStartup] 2.018988ms
+2014-06-29 13:58:26.607 HelloCordova[2046:90b] Resetting plugins due to page load.
+2014-06-29 13:58:29.127 HelloCordova[2046:90b] Finished load of: file:///Users/ritikkhatwani/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/4007F213-75C7-41F6-81B1-98AF86302118/HelloCordova.app/www/index.html#/tab/explore
+2014-06-29 13:58:29.329 HelloCordova[2046:90b] Centering
+2014-06-29 13:58:30.330 HelloCordova[2046:90b] ERROR: elasticsearch cluster is down!
+2014-06-29 13:58:33.760 HelloCordova[2046:90b] Got pos [object Geoposition]
+2014-06-29 13:58:59.479 HelloCordova[2046:90b] Centering
+2014-06-29 13:58:59.510 HelloCordova[2046:90b] Got pos [object Geoposition]
+2014-06-29 13:58:59.988 HelloCordova[2046:90b] All is well with elasticsearch
+2014-06-29 14:06:24.688 HelloCordova[2357:90b] Multi-tasking -> Device: YES, App: YES
+2014-06-29 14:06:24.694 HelloCordova[2357:90b] Unlimited access to network resources
+2014-06-29 14:06:24.708 HelloCordova[2357:90b] [CDVTimer][keyboard] 0.056982ms
+2014-06-29 14:06:24.709 HelloCordova[2357:90b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-06-29 14:06:24.709 HelloCordova[2357:90b] [CDVTimer][statusbar] 0.367999ms
+2014-06-29 14:06:24.710 HelloCordova[2357:90b] [CDVTimer][TotalPluginStartup] 1.484036ms
+2014-06-29 14:06:24.744 HelloCordova[2357:90b] Resetting plugins due to page load.
+2014-06-29 14:06:27.654 HelloCordova[2357:90b] Finished load of: file:///Users/ritikkhatwani/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/4007F213-75C7-41F6-81B1-98AF86302118/HelloCordova.app/www/index.html#/tab/explore
+2014-06-29 14:06:27.655 HelloCordova[2357:90b] Centering
+2014-06-29 14:06:28.654 HelloCordova[2357:90b] ERROR: elasticsearch cluster is down!
+2014-06-29 14:07:23.009 HelloCordova[2357:90b] Got pos [object Geoposition]
+2014-06-29 16:30:06.039 HelloCordova[2959:90b] Multi-tasking -> Device: YES, App: YES
+2014-06-29 16:30:06.046 HelloCordova[2959:90b] Unlimited access to network resources
+2014-06-29 16:30:06.060 HelloCordova[2959:90b] [CDVTimer][keyboard] 0.075042ms
+2014-06-29 16:30:06.121 HelloCordova[2959:90b] [CDVTimer][statusbar] 60.077012ms
+2014-06-29 16:30:06.121 HelloCordova[2959:90b] [CDVTimer][TotalPluginStartup] 61.203003ms
+2014-06-29 16:30:06.892 HelloCordova[2959:90b] Resetting plugins due to page load.
+2014-06-29 16:30:09.471 HelloCordova[2959:90b] Finished load of: file:///Users/ritikkhatwani/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/4007F213-75C7-41F6-81B1-98AF86302118/HelloCordova.app/www/index.html#/tab/explore
+2014-06-29 16:30:09.473 HelloCordova[2959:90b] Centering
+2014-06-29 16:30:09.521 HelloCordova[2959:90b] Got pos [object Geoposition]
+2014-06-29 16:30:10.471 HelloCordova[2959:90b] ERROR: elasticsearch cluster is down!
+2014-06-29 16:30:20.743 HelloCordova[2959:90b] Camera.getPicture: source type 1 not available.
+2014-06-29 16:30:20.745 HelloCordova[2959:90b] THREAD WARNING: ['Camera'] took '25.337891' ms. Plugin should use a background thread.
+2014-06-29 16:33:11.470 HelloCordova[2959:90b] Centering
+2014-06-29 16:33:11.896 HelloCordova[2959:90b] Got pos [object Geoposition]
+2014-06-29 16:33:12.431 HelloCordova[2959:90b] ERROR: elasticsearch cluster is down!
+2014-06-29 16:33:43.986 HelloCordova[2959:90b] Camera.getPicture: source type 1 not available.
+2014-06-29 16:35:26.539 HelloCordova[3224:90b] Multi-tasking -> Device: YES, App: YES
+2014-06-29 16:35:26.549 HelloCordova[3224:90b] Unlimited access to network resources
+2014-06-29 16:35:26.570 HelloCordova[3224:90b] [CDVTimer][keyboard] 0.063002ms
+2014-06-29 16:35:26.578 HelloCordova[3224:90b] [CDVTimer][statusbar] 7.861018ms
+2014-06-29 16:35:26.588 HelloCordova[3224:90b] [CDVTimer][TotalPluginStartup] 18.312991ms
+2014-06-29 16:35:26.790 HelloCordova[3224:90b] Resetting plugins due to page load.
+2014-06-29 16:35:29.750 HelloCordova[3224:90b] Finished load of: file:///Users/ritikkhatwani/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/4007F213-75C7-41F6-81B1-98AF86302118/HelloCordova.app/www/index.html#/tab/explore
+2014-06-29 16:35:29.754 HelloCordova[3224:90b] Centering
+2014-06-29 16:35:30.043 HelloCordova[3224:90b] Got pos [object Geoposition]
+2014-06-29 16:35:30.742 HelloCordova[3224:90b] ERROR: elasticsearch cluster is down!
+2014-06-29 16:35:38.089 HelloCordova[3224:90b] Centering
+2014-06-29 16:35:38.096 HelloCordova[3224:90b] Got pos [object Geoposition]
+2014-06-29 16:35:44.697 HelloCordova[3224:90b] Camera.getPicture: source type 1 not available.
+2014-06-29 16:35:49.237 HelloCordova[3224:90b] Centering
+2014-06-29 16:35:50.039 HelloCordova[3224:90b] Got pos [object Geoposition]
+2014-06-29 16:35:50.201 HelloCordova[3224:90b] ERROR: elasticsearch cluster is down!
+2014-06-29 16:36:04.344 HelloCordova[3224:90b] ERROR: elasticsearch cluster is down!
+2014-06-29 16:36:05.838 HelloCordova[3224:90b] All is well with elasticsearch
+2014-06-29 16:36:23.041 HelloCordova[3224:90b] ERROR: elasticsearch cluster is down!
+2014-06-29 16:36:27.697 HelloCordova[3224:90b] Camera.getPicture: source type 1 not available.
