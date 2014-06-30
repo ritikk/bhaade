@@ -15,6 +15,8 @@ angular.module('starter.controllers', [])
     anchorPoint: new google.maps.Point(0, -29)
   });
 
+  var available = [];
+
   var infowindow = new google.maps.InfoWindow();
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -30,7 +32,64 @@ angular.module('starter.controllers', [])
 
     $scope.markPlace(place);
 
+    $scope.showAvailableParkings();
+
   });
+
+  $scope.showAvailableParkings = function() {
+    $scope.loading = $ionicLoading.show({
+      content: "Searching..",
+      noBackdrop: true
+    });
+    var bounds = $scope.map.getBounds();
+    console.log("showing for bounds:" + bounds.toString());
+    var latLte = bounds.getNorthEast().lat();
+    var latGte = bounds.getSouthWest().lat();
+    var lngLte = bounds.getNorthEast().lng();
+    var lngGte = bounds.getSouthWest().lng();
+    // search for documents (and also promises!!)
+    es.search({
+      index: 'bhaade-dev',
+      size: 50,
+      type: 'listing',
+      body: {
+        query: {
+          constant_score: {
+            filter: {
+              range: {
+                lat: {
+                  "gte": latGte,
+                  "lte": latLte
+                },
+                lng: {
+                  "gte": lngGte,
+                  "lte": lngLte
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }).then(function(resp) {
+      available = [];
+      var hits = resp.hits.hits;
+      console.log(resp);
+      for (var i = hits.length - 1; i >= 0; i--) {
+        var m = new google.maps.Marker({
+          position: new google.maps.LatLng(hits[i]._source.lat, hits[i]._source.lng),
+          map: $scope.map,
+          title: hits[i]._source.address,
+          icon: "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png"
+        });
+        available[i] = m;
+      };
+      $scope.loading.hide();
+    }, function(err) {
+      console.log(err);
+      $scope.loading.hide();
+    });
+  };
 
   $scope.markPlace = function(place) {
     infowindow.close();
@@ -73,7 +132,7 @@ angular.module('starter.controllers', [])
     } else {
       $scope.centerOnMe();
     }
-    es.ping({
+    /*es.ping({
       requestTimeout: 1000,
       hello: "elasticsearch!"
     }, function(error) {
@@ -82,7 +141,7 @@ angular.module('starter.controllers', [])
       } else {
         console.log('All is well with elasticsearch');
       }
-    });
+    });*/
   };
 
   $scope.addNavigateButton = function() {
@@ -104,7 +163,7 @@ angular.module('starter.controllers', [])
 
     $scope.loading = $ionicLoading.show({
       content: 'Getting current location...',
-      showBackdrop: false
+      noBackdrop: true
     });
 
     navigator.geolocation.getCurrentPosition(function(pos) {
@@ -118,6 +177,8 @@ angular.module('starter.controllers', [])
       });
       $scope.map.setZoom(17); // Why 17? Because it looks good.
       $scope.loading.hide();
+      //TODO: fix this, hangs the app on start
+      //$scope.showAvailableParkings();
     }, function(error) {
       alert('Unable to get location: ' + error.message);
       $scope.loading.hide();
@@ -136,10 +197,10 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AddPhotoCtrl', function($scope, cameraSvc, listingSvc, $ionicActionSheet) {
+.controller('AddPhotoCtrl', function($scope, cameraSvc, listingSvc, $ionicActionSheet, es, $ionicLoading, $location) {
 
-  if(listingSvc.getListing().photo) {
-    $scope.imageURI = listingSvc.getListing().photo;    
+  if (listingSvc.getListing().photo) {
+    $scope.imageURI = listingSvc.getListing().photo;
   }
 
   var options = {
@@ -162,7 +223,7 @@ angular.module('starter.controllers', [])
       cancelText: 'Cancel',
       buttonClicked: function(index) {
         options.sourceType = index;
-        if(index===0){
+        if (index === 0) {
           options.saveToPhotoAlbum = false;
         } else {
           options.saveToPhotoAlbum = true;
@@ -179,13 +240,14 @@ angular.module('starter.controllers', [])
       $scope.imageURI = "data:image/jpeg;base64," + imageData;
       var listing = listingSvc.getListing();
       listing.photo = $scope.imageURI;
-      listingSvc.setListing(listing);      
+      listingSvc.setListing(listing);
     }, function(err) {
       console.err(err);
     });
   };
 
   $scope.save = function() {
+
     var listing = listingSvc.getListing();
     listing.createDate = new Date();
     listing.updateDate = new Date();
@@ -194,6 +256,8 @@ angular.module('starter.controllers', [])
     listing.active = true;
     listing.isProblemReported = false;
     listing.isDeleted = false;
+    listing.user = null;
+    listing.id = null;
 
     geocoder = new google.maps.Geocoder();
     var address = listing.address.concat(", ", listing.city, " ", listing.pincode);
@@ -207,9 +271,29 @@ angular.module('starter.controllers', [])
         console.log("geocode coords" + results[0].geometry.location.toString());
       } else {
         console.err("Geocode was not successful for the following reason: " + status);
+        alert("Geocode was not successful for the following reason: " + status);
+        return;
       }
-      console.log(listing);
+      //console.log(listing);
     });
+
+    $scope.loading = $ionicLoading.show({
+      content: 'Saving..',
+      noBackdrop: true
+    });
+    // index a document
+    es.index({
+      index: 'bhaade-dev',
+      type: 'listing',
+      body: listing
+    }, function(err, resp) {
+      console.log(resp);
+      console.err(err);
+      $scope.loading.hide();
+      alert(resp);
+      alert(err);
+    });
+    $location.path("/tab/explore");
   };
 })
 
