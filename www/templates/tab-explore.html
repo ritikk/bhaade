@@ -3,9 +3,12 @@
         <div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Locality, Landmark or Pincode" id="mapSearch">
-            </label>            
+                <input type="search" placeholder="Locality, Landmark or Pincode" id="mapSearch" ng-model="searchFilter" ng-change="search()">
+            </label>
+	    <button class="button button-stable button-block icon ion-compass" ng-click="showMapView()"> Map View</button>
+	    <label class="item" ng-repeat="a in available">
+		{{a.address}}
+	    </label>
         </div>
-      <map on-create="mapCreated(map)"></map>
     </ion-content>
-  </ion-view>
+</ion-view>

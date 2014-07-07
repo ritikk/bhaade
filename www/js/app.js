@@ -41,6 +41,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
         }
       }
     })
+    
+    .state('tab.explore-map', {
+      url: '/explore/map',
+      views: {
+        'tab-explore': {
+          templateUrl: 'templates/tab-explore-map.html',
+          controller: 'ExploreMapCtrl'
+        }
+      }
+    })
 
     .state('tab.addListing', {
       url: '/add-listing',
