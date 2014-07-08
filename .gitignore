@@ -54,3 +54,7 @@ IOS/www/
 # platforms
 platforms
 /platforms
+
+#plugins
+plugins
+/plugins
