@@ -152,8 +152,15 @@ angular.module('starter.controllers', [])
 		FB.login(
 				 function(response) {
 				 alert(JSON.stringify(response));
-				 if (response.session) {
-				 alert('logged in');
+				 if (response.authResponse) {
+					FB.api(
+						"/me",
+						function (response) {
+						  if (response && !response.error) {
+							alert(JSON.stringify(response));
+						  }
+						}
+					);
 				 } else {
 				 alert('not logged in');
 				 }
