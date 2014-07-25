@@ -151,6 +151,7 @@ angular.module('starter.controllers', [])
 	$scope.login = function() {
 		FB.login(
 				 function(response) {
+				 alert(JSON.stringify(response));
 				 if (response.session) {
 				 alert('logged in');
 				 } else {
