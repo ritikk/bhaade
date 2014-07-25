@@ -12,6 +12,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
 			// org.apache.cordova.statusbar required
 			//StatusBar.hide();
 		}
+		
+		try {
+		  FB.init({ appId: "1459979374258261", nativeInterface: CDV.FB, useCachedDialogs: false });
+		  //document.getElementById('data').innerHTML = "";
+		  } catch (e) {
+		  alert(e);
+		}
 	});
 })
 
