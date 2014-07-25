@@ -144,7 +144,23 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AccountCtrl', function($scope) {})
+.controller('AccountCtrl', function($scope) {
+	if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
+	if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
+    
+	$scope.login = function() {
+		FB.login(
+				 function(response) {
+				 if (response.session) {
+				 alert('logged in');
+				 } else {
+				 alert('not logged in');
+				 }
+				 },
+				 { scope: "email" }
+				 );
+	};
+})
 
 .controller('ExploreMapCtrl', function($scope, $ionicLoading, placeSvc, es) {
   var searchInput = document.getElementById('mapSearch');
